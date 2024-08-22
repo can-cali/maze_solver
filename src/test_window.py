@@ -8,6 +8,7 @@ class TestWindow(unittest.TestCase):
         win = Window(800,600)
         self.assertEqual(win.running, False)
         win.close()
+        # I cannot test the windows size because functions return 1 for width and height
     
     def test_redraw(self):
         win = Window(800,600)
