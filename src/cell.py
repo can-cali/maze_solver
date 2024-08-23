@@ -18,6 +18,8 @@ class Cell:
         self._x2 = x2
         self._y1 = y1
         self._y2 = y2
+        self._middle_x = (x1 + x2) / 2
+        self._middle_y = (y1 + y2) / 2
         if self.has_left_wall:
             line = Line(Point(x1, y1), Point(x1, y2))
             self._win.draw_line(line)
@@ -30,3 +32,14 @@ class Cell:
         if self.has_bottom_wall:
             line = Line(Point(x1, y2), Point(x2, y2))
             self._win.draw_line(line)
+    
+    def draw_move(self, to_cell, undo=False):
+        x1 = self._middle_x
+        y1 = self._middle_y
+        x2 = to_cell._middle_x
+        y2 = to_cell._middle_y
+        line = Line(Point(x1, y1), Point(x2, y2))
+        if undo:
+            self._win.draw_line(line, "gray")
+        else:
+            self._win.draw_line(line, "red")
