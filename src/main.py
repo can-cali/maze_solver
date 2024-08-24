@@ -7,7 +7,6 @@ from maze import Maze
 def main():
     win = Window(800,600)
     maze = Maze(10, 10, 10, 10, 80, 60, win)
-    maze._break_entrance_and_exit()
     win.redraw()
     win.wait_for_close()
 
