@@ -1,5 +1,8 @@
 from point import Point
 from line import Line
+import platform
+
+system = platform.system()
 
 class Cell:
     def __init__(self, win, has_left_wall=True, has_right_wall=True, has_top_wall=True, has_bottom_wall=True):
@@ -21,30 +24,35 @@ class Cell:
         self._y2 = y2
         self._middle_x = (x1 + x2) / 2
         self._middle_y = (y1 + y2) / 2
+        
+        if system == "Linux":
+            color = "#d9d9d9"
+        else:
+            color = "white"
         if self.has_left_wall:
             line = Line(Point(x1, y1), Point(x1, y2))
             self._win.draw_line(line)
         else:
             line = Line(Point(x1, y1), Point(x1, y2))
-            self._win.draw_line(line, "#d9d9d9")
+            self._win.draw_line(line, color)
         if self.has_top_wall:
             line = Line(Point(x1, y1), Point(x2, y1))
             self._win.draw_line(line)
         else:
             line = Line(Point(x1, y1), Point(x2, y1))
-            self._win.draw_line(line, "#d9d9d9")
+            self._win.draw_line(line, color)
         if self.has_right_wall:
             line = Line(Point(x2, y1), Point(x2, y2))
             self._win.draw_line(line)
         else:
             line = Line(Point(x2, y1), Point(x2, y2))
-            self._win.draw_line(line, "#d9d9d9")
+            self._win.draw_line(line, color)
         if self.has_bottom_wall:
             line = Line(Point(x1, y2), Point(x2, y2))
             self._win.draw_line(line)
         else:
             line = Line(Point(x1, y2), Point(x2, y2))
-            self._win.draw_line(line, "#d9d9d9")
+            self._win.draw_line(line, color)
     
     def draw_move(self, to_cell, undo=False):
         x1 = self._middle_x
